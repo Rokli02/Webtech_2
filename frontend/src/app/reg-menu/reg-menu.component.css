@@ -1,0 +1,37 @@
+#reg-menu {
+  background-color: #FF867E;
+  box-shadow: 4px 8px 8px rgba(0, 0, 0, 0.5);
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.text-align-left {
+  text-align: left;
+}
+
+form > div  label {
+  font-size: 1.7em;
+  font-weight: 600;
+}
+
+.medium-font {
+  font-size: 1.5em;
+}
+
+.basic-form {
+  background-color: #FCC3BF;
+  border: 2px solid #f8665c;
+  box-shadow: inset 0px 4px 4px hsla(0, 0%, 0%, 0.250);
+}
+
+.is-invalid {
+  border: 2px solid red;
+}
+
+@media screen and (min-width: 1200px) {
+  #reg-menu {
+    width: 1200px;
+  }
+}

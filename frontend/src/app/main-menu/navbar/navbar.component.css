@@ -1,0 +1,77 @@
+.navbar {
+  background-color: #FF867E;
+}
+
+.profile {
+  cursor: pointer;
+  display: inline-flex;
+  position: relative;
+  height: 50px;
+  width: 50px;
+  border: 2px solid #af3a31;
+  border-radius: 50%;
+  background-color: rgb(88, 20, 11);
+}
+
+.navbar-height {
+  height: 2em;
+}
+
+.input-color-theme {
+  background-color: #FFC7C7;
+  border-color: #fbb6b6;
+}
+
+.input-color-theme:focus {
+  box-shadow: 2px 0px 4px rgba(255, 0, 0, 0.3),
+              -2px 0px 4px rgba(255, 0, 0, 0.3),
+              0px 2px 4px rgba(255, 0, 0, 0.3),
+              0px -2px 4px rgba(255, 0, 0, 0.3);
+  border-color: rgba(255, 0, 0, 0.25);
+}
+
+.rounded-corners {
+  border-radius: 25px;
+}
+
+.dropdown-menu {
+  background-color: #FF867E;
+  text-align: center;
+  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.dropdown-item:hover {
+  background-color: #ffaca6;
+  margin: auto;
+  width: 90%;
+  border-radius: 20px;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color:rgb(42, 3, 3)
+}
+
+a:hover {
+  color: #a71e1e;
+}
+
+.flex-content {
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.text-align-left {
+  text-align: left;
+}
+
+@media screen and (min-width: 550px) {
+  .dropdown-menu {
+    width: 250px;
+  }
+}

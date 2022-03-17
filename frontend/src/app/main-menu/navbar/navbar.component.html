@@ -1,0 +1,44 @@
+<nav class="navbar">
+  <div class="container-fluid">
+    <div class="flex-content justify-content-center align-items-center">
+      <div class="dropdown">
+        <button class="btn me-2 " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-justify h2"></i>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a routerLink="" class="dropdown-item">All items</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a routerLink="add-item" class="dropdown-item">Add new item</a></li>
+          <li><hr class="dropdown-divider"></li>
+        </ul>
+      </div>
+      <form class="d-flex">
+        <input class="form-control input-color-theme rounded-corners me-3" type="text" placeholder="Search" name="filter" #filter>
+        <button class="btn btn-danger rounded-corners" type="button" (click)="setFilter(filter.value)">Search</button>
+      </form>
+    </div>
+    <div class="justify-content-center flex-content align-items-center">
+      <div *ngIf="!hasUser; else dontHaveUser">
+        <a routerLink="sign-up" class="h4 me-3">Sign Up</a>
+        <a routerLink="login" class="h4 me-3">Login</a>
+      </div>
+      <ng-template #dontHaveUser>
+        <div class="flex-content align-items-center">
+          <div>
+            <a routerLink="wishlist" class="h4 me-3">Wishlist</a>
+            <a class="h4 me-3" (click)="logoutUser()">Logout</a>
+          </div>
+          <div class="btn-group">
+            <img [src]="profPicPath" class="profile" data-bs-toggle="dropdown" aria-expanded="false"/>
+            <div class="dropdown-menu dropdown-menu-end text-align-left ps-4">
+              <span>Username:</span>
+              <p class="ps-3">{{user.name}}</p>
+              <span>E-mail:</span>
+              <p class="ps-3">{{user.email}}</p>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</nav>

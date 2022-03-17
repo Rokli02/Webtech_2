@@ -1,0 +1,30 @@
+<div class="container-fluid">
+  <div class="row justify-content-between mb-5">
+    <div class="col text-start p-4">
+      <a routerLink="/" class="text-dark text-decoration-none h4"><strong>Back</strong></a>
+    </div>
+    <div class="col text-end p-4">
+      <a routerLink="/sign-up" class="text-dark text-decoration-none h4"><strong>Sign Up</strong></a>
+    </div>
+  </div>
+  <div id="login-menu" class="container">
+    <form [formGroup]="logForm" class="p-4">
+      <p class="h1">Login</p>
+      <br>
+      <div class="row-lg mb-4 mt-3">
+        <label for="username" class="form-label col-12 strong">Username</label>
+        <input type="text" name="username" id="username" placeholder="Your username..." formControlName="name"
+        class="form-control basic-form" [ngClass]="{'is-invalid' : this.fieldsNotValid[0] }" required>
+        <div class="invalid-feedback">{{fieldsNotValid[0]}}</div>
+      </div>
+      <div class="row-lg mb-5">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" name="password" placeholder="Your password..." id="password" formControlName="password"
+        class="form-control basic-form" [ngClass]="{'is-invalid' : this.fieldsNotValid[1] }" required>
+        <div class="invalid-feedback">{{fieldsNotValid[1]}}</div>
+      </div>
+      <br>
+      <input type="button" value="Sign In" class="btn-lg btn-success mb-4" (click)="login()">
+    </form>
+  </div>
+</div>

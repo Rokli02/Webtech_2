@@ -1,0 +1,14 @@
+<div class="main-menu-container main-menu-color justify-content-center">
+  <div class="row-cards justify-content-center" *ngIf="userItems!.length > 0; else hasNoItems">
+    <div class="col-card mb-4" *ngFor="let item of userItems">
+      <app-item-card [item]="item.item" [amount]="item.amount" [hasUser]="isUserLoggedIn()"
+                     (itemChanged)="updateUserItem($event)"></app-item-card>
+    </div>
+  </div>
+  <div class="spinner-border" role="status" *ngIf="loadingData"></div>
+  <ng-template #hasNoItems>
+    <div class="justify-content-center">
+      <p class="h3">There are no items on your wishlist!<br> Pick up some.</p>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,22 @@
+<div class="card text-align-center bgcolor-bordo">
+  <div class="card-header height-275px">
+    <img class="image-fit-width" [src]="item.imageUrl" alt="img">
+  </div>
+  <div class="card-body">
+    <div [title]="item.description" class="card-title h3">{{item.name}}</div>
+    <span *ngIf="!appearOnWishlist(); else appearOnList">
+      <button class="btn btn-success button-slim" (click)="addAsUserItem()" *ngIf="hasUser">Add</button>
+    </span>
+    <ng-template #appearOnList>
+      <div class="wishlist-card-body">
+        <button class="btn btn-danger wishlist-card-item" (click)="decreaseAmount()">
+          <i class="bi bi-arrow-down"></i>
+        </button>
+        <span class="wishlist-card-item wishlist-card-item-font">{{amount}}</span>
+        <button class="btn btn-success wishlist-card-item" (click)="increaseAmount()">
+          <i class="bi bi-arrow-up"></i>
+        </button>
+      </div>
+    </ng-template>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+.button-slim {
+  width: 10ch;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.image-fit-width {
+  width: 99%;
+  max-height: 100%;
+  border: 2px solid #af2c2c;
+}
+
+.height-275px {
+  height: 275px;
+}
+
+.bgcolor-bordo {
+  background-color: #cc4a4a;  /* #962727 */
+}
+
+.card {
+  max-height: 420px;
+  width: 280px;
+}
+
+.wishlist-card-body {
+  display: inline-flex;
+  align-items: center;
+}
+
+.wishlist-card-item {
+  margin-left: 2ch;
+  margin-right: 2ch;
+  height: 40px;
+  width: 40px;
+}
+
+.wishlist-card-item-font {
+  font-size: 1.5em;
+  font-weight: 700;
+}

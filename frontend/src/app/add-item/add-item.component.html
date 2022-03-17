@@ -1,0 +1,31 @@
+<div class="container-fluid">
+  <div class="row justify-content-between mb-5">
+    <div class="col text-start p-4">
+      <a routerLink="/" class="text-dark text-decoration-none h4"><strong>Back</strong></a>
+    </div>
+  </div>
+  <div id="add-menu" class="container">
+    <form [formGroup]="itemForm" (ngSubmit)="addNewItem()" class="p-4">
+      <p class="h1">Add New Item</p>
+      <br>
+      <div class="flex-content mb-4 mt-3 align-content-center">
+        <label for="name" class="form-label">Item name</label>
+        <input type="text" name="name" id="name" placeholder="Name..."
+        class="form-control basic-form" [ngClass]="{'is-invalid':  this.invalidText[0] }" formControlName="name" required>
+        <div class="invalid-feedback">{{invalidText[0]}}</div>
+      </div>
+      <div class="flex-content mb-5 align-content-center">
+        <label for="description" class="form-label justify-content-center">Description</label>
+        <textarea name="description" id="description" cols="35" rows="4" placeholder="Description..."
+        class="form-control basic-form" [ngClass]="{'is-invalid':  this.invalidText[1] }" formControlName="description" required></textarea>
+        <div class="invalid-feedback">{{invalidText[1]}}</div>
+      </div>
+      <div class="flex-content mb-5 align-content-center">
+        <label for="imageUrl" class="form-label">Image</label>
+        <input type="text" name="imageUrl" id="imageUrl" placeholder="Url..."
+        class="form-control basic-form" formControlName="imageUrl">
+      </div>
+      <input type="submit" value="Add" class="btn-lg btn-success mb-4">
+    </form>
+  </div>
+</div>
