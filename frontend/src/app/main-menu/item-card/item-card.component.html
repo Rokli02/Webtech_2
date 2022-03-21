@@ -3,7 +3,7 @@
     <img class="image-fit-width" [src]="item.imageUrl" alt="img">
   </div>
   <div class="card-body">
-    <div [title]="item.description" class="card-title h3">{{item.name}}</div>
+    <div [title]="item.description" class="card-title h3 text-has-title">{{item.name}}</div>
     <span *ngIf="!appearOnWishlist(); else appearOnList">
       <button class="btn btn-success button-slim" (click)="addAsUserItem()" *ngIf="hasUser">Add</button>
     </span>

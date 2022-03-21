@@ -30,6 +30,10 @@
   align-items: center;
 }
 
+.text-has-title {
+  cursor: help;
+}
+
 .wishlist-card-item {
   margin-left: 2ch;
   margin-right: 2ch;
