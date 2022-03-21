@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserItem } from 'src/app/user/useritem.model';
 import { UserService } from 'src/app/user/user.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-wishlist',
@@ -15,6 +16,7 @@ export class WishlistComponent implements OnInit, OnDestroy {
   loadingData : boolean = false;
   hasUserSub !: Subscription;
   itemFilterSub !: Subscription;
+  filter : string = '';
 
   constructor(private userService: UserService,
               private router: Router) { }
@@ -47,7 +49,15 @@ export class WishlistComponent implements OnInit, OnDestroy {
     try {
       this.loadingData = true;
       this.userItems = await this.userService.getUserItem(filter);
-    } catch(err) {}
+    } catch(err) {
+      if(err instanceof HttpErrorResponse){
+        if(err.status == 401) {
+        this.router.navigate(['']);
+        this.userService.signOutUser();
+        }
+      }
+    }
+    this.filter = filter
     this.loadingData = false;
   }
 
@@ -58,14 +68,16 @@ export class WishlistComponent implements OnInit, OnDestroy {
   async updateUserItem(userItem : UserItem) {
     try {
       const result = await this.userService.updateUserItemAmount(userItem);
-      if(!result){
-
-        return;
-      }
+      if(!result){return}
       this.updateUserItemLocally(userItem);
 
     }catch(err) {
-      console.log('Error during update\n'+(err as Error).stack);
+      if(err instanceof HttpErrorResponse){
+        if(err.status == 401) {
+        this.router.navigate(['']);
+        this.userService.signOutUser();
+        }
+      }
     }
   }
 

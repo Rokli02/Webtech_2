@@ -1,14 +1,22 @@
 <div class="main-menu-container main-menu-color justify-content-center">
-  <div class="row-cards justify-content-center" *ngIf="userItems!.length > 0; else hasNoItems">
-    <div class="col-card mb-4" *ngFor="let item of userItems">
-      <app-item-card [item]="item.item" [amount]="item.amount" [hasUser]="isUserLoggedIn()"
-                     (itemChanged)="updateUserItem($event)"></app-item-card>
-    </div>
+  <div *ngIf="loadingData; else loaded">
+    <div class="spinner-border" role="status"></div>
+    <span class="h3">Loading data...</span>
   </div>
-  <div class="spinner-border" role="status" *ngIf="loadingData"></div>
+  <ng-template #loaded>
+    <div class="row-cards justify-content-center" *ngIf="userItems!.length > 0; else hasNoItems">
+      <div class="col-card mb-4" *ngFor="let item of userItems">
+        <app-item-card [item]="item.item" [amount]="item.amount" [hasUser]="isUserLoggedIn()"
+                       (itemChanged)="updateUserItem($event)"></app-item-card>
+      </div>
+    </div>
+  </ng-template>
   <ng-template #hasNoItems>
-    <div class="justify-content-center">
+    <div class="justify-content-center" *ngIf="!filter; else noItemFoundWithFilter">
       <p class="h3">There are no items on your wishlist!<br> Pick up some.</p>
     </div>
+    <ng-template #noItemFoundWithFilter>
+      <p class="h3">No items are found with this filter: '{{filter}}'</p>
+    </ng-template>
   </ng-template>
 </div>

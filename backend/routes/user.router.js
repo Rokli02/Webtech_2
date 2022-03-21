@@ -89,7 +89,7 @@ router.post('/login', async (req, res) => {
     }
 
     //let the damn boy login
-    const token = jwt.sign({_id: user._id}, config.jwt_secret, { expiresIn: "30 minutes"});
+    const token = jwt.sign({_id: user._id}, config.jwt_secret, { expiresIn: config.token_lifetime});
     res.send({uid: user._id, email: user.email, gender: user.gender, token: token});
 });
 
@@ -156,7 +156,7 @@ router.post('/wishlist/add', verify.authorize, async (req, res) => {
 });
 
 router.patch('/wishlist/update/:amount', verify.authorize, async (req, res) => {
-    if(!req.query.itemId || !req.query.uid  || !req.params.amount){
+    if(!req.query.itemId || !req.query.uid  || !req.params.amount || req.param.amount <= 0){
         return res.status(404).send('Could not find useritem with this parameters!');
     }
 

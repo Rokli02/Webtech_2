@@ -46,7 +46,7 @@ router.post('/add', async (req, res) => {
         const saveItem = await item.save();
         res.json(saveItem._id);
     }catch(err) {
-        console.log('something else');
+        console.log('Couldn\'t save!');
        return res.status(400).send(err);
     }
 })

@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component} from '@angular/core';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { ItemService } from '../item/item.service';
@@ -23,13 +24,17 @@ export class AddItemComponent {
     if(this.validInput()){
       try {
         const inserted = await this.itemService.addItem(this.itemForm.value);
-      if(!inserted){
-        alert('Could not add item!');
-      } else {
+      if(!inserted){return} else {
         this.itemForm.reset();
       }
       }catch(err) {
-        alert('Could not add item, it\'s already exists!');
+        let errorMessage = 'Could not add item';
+        if(err instanceof HttpErrorResponse) {
+          if(err.status == 400){
+            errorMessage += 'It\'s already exists!'
+          }
+        }
+        alert(errorMessage);
       }
     }
   }

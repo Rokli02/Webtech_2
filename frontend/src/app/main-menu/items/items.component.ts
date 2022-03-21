@@ -1,4 +1,6 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Item } from 'src/app/item/item.model';
 import { ItemService } from 'src/app/item/item.service';
@@ -10,14 +12,16 @@ import { UserService } from 'src/app/user/user.service';
   styleUrls: ['./items.component.css']
 })
 export class ItemsComponent implements OnInit, OnDestroy {
-  private allItems !: Item[];
+  private allItems : Item[] = [];
   private hasUser !: boolean;
   loadingData : boolean = false;
   hasUserSub !: Subscription;
   itemFilterSub !: Subscription;
+  filter : string = '';
 
   constructor(private userService : UserService,
-              private itemService : ItemService) { }
+              private itemService : ItemService,
+              private router: Router) { }
 
   async ngOnInit() {
     this.setItemsLocally('');
@@ -47,6 +51,7 @@ export class ItemsComponent implements OnInit, OnDestroy {
     }catch(err) {
       console.log(err);
     }
+    this.filter = filter;
     this.loadingData = false;
   }
 
@@ -59,7 +64,14 @@ export class ItemsComponent implements OnInit, OnDestroy {
       const uii = await this.userService.addUserItemToWishlist(itemId);
       alert('Item added successfully:\n'+uii);
     }catch(err) {
-      alert('Item is already added!');
+      if(err instanceof HttpErrorResponse){
+        if(err.status == 401) {
+        this.userService.signOutUser();
+        }
+        if(err.status == 400) {
+          alert('Item is already added!');
+        }
+      }
     }
   }
 

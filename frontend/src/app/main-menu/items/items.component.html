@@ -1,11 +1,14 @@
 <div class="main-menu-container main-menu-color justify-content-center">
-  <div *ngIf="loadingData">
-    <div class="spinner-border" role="status"></div>
-    <span class="h3">Loading data...</span>
-  </div>
-  <div class="row-cards justify-content-center">
+  <div class="row-cards justify-content-center" *ngIf="filteredItems().length > 0; else noItemsFound">
     <div class="col-card mb-4" *ngFor="let item of filteredItems()">
       <app-item-card [item]="item" [hasUser]="isUserLoggedIn()" (itemToAdd)="addUserItem($event)"></app-item-card>
     </div>
   </div>
+  <ng-template #noItemsFound>
+    <div *ngIf="loadingData">
+      <div class="spinner-border" role="status"></div>
+      <span class="h3">Loading data...</span>
+    </div>
+    <p class="h3" *ngIf="filter && !loadingData">No items are found with this filter: '{{filter}}'</p>
+  </ng-template>
 </div>
